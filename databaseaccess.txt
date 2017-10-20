@@ -1,0 +1,17 @@
+server name: yvwchallenge.chqn5g6ohkqb.ap-southeast-2.rds.amazonaws.com
+
+user: admin
+password: passwordpassword
+
+
+
+
+
+exec msdb.dbo.rds_restore_database 
+        @restore_db_name='yvwchallenge', 
+        @s3_arn_to_restore_from='arn:aws:s3:::yvwchallenge/YVW_Challenge.bak';
+
+exec msdb.dbo.rds_task_status @task_id = 1
+
+
+GRANT EXECUTE ON dbo.rds_restore_database to admin
